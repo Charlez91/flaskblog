@@ -5,12 +5,16 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
 from dotenv import load_dotenv
+import pymysql
+
+pymysql.install_as_MySQLdb()
 
 load_dotenv()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '6a084d2a5952e0c8400ef39f1a0d2917'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:charles@127.0.0.1/test'
 db =  SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
